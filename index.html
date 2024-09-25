@@ -23,7 +23,7 @@
         <input type="text" class="form-control" id="studentName" name="studentName" required>
          </div>
 
-<!--          <div class="col-md-6 mb-2">
+         <div class="col-md-6 mb-2">
             <label for="studentName" >ชั้น:</label>
             <select class="form-control" id="classroom" name="classroom" required>
                 <option disabled selected value="">เลือกชั้น..</option>
@@ -35,7 +35,7 @@
                 <option>ม.6</option>
                 </select>
 
-             </div> -->
+             </div> 
 
          <div class="col-md-12 mb-2">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -61,10 +61,10 @@
 
             const studentId = document.getElementById('studentId').value;
             const studentName = document.getElementById('studentName').value;
-           // const classroom = document.getElementById('classroom').value;
+            const classroom = document.getElementById('classroom').value;
 
-            if(studentId && studentName) {
-                const redirectUrl = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${noti_ClientId}&redirect_uri=${noti_RedirectUrl}&scope=notify&state=${studentId}_${studentName}`;
+            if(studentId && studentName && classroom) {
+                const redirectUrl = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${noti_ClientId}&redirect_uri=${noti_RedirectUrl}&scope=notify&state=${studentId}_${studentName}_${classroom}`;
                 window.location.href = redirectUrl;
             } else {
                 alert('Please enter both Student ID and Name.');
