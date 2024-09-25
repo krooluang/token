@@ -63,7 +63,7 @@
             const studentName = document.getElementById('studentName').value;
            // const classroom = document.getElementById('classroom').value;
 
-            if(studentId && studentName && classroom) {
+            if(studentId && studentName) {
                 const redirectUrl = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${noti_ClientId}&redirect_uri=${noti_RedirectUrl}&scope=notify&state=${studentId}_${studentName}`;
                 window.location.href = redirectUrl;
             } else {
