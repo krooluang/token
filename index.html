@@ -7,30 +7,49 @@
     <title>Student Form</title>
 </head>
 <body>
-
+<div class="container">
+    <div class="col-md-6 mx-auto">
     <h2 style="color: blue;">ลงทะเบียนรับการแจ้งเตือน</h2>
 
     <form id="studentForm">
         <div class="row">
         <div class="col-md-6 mb-2">
-        <label for="studentId" style="background: green;">รหัสนักเรียน:</label>
-        <input type="text" class="form-control" id="studentId" name="studentId" required><br><br>
+        <label for="studentId">รหัสนักเรียน:</label>
+        <input type="text" class="form-control" id="studentId" name="studentId" required>
          </div>
 
          <div class="col-md-6 mb-2">
-        <label for="studentName" style="background: green;">ชื่อนักเรียน:</label>
-        <input type="text" class="form-control" id="studentName" name="studentName" required><br><br>
+        <label for="studentName" >ชื่อนักเรียน:</label>
+        <input type="text" class="form-control" id="studentName" name="studentName" required>
          </div>
 
+         <div class="col-md-6 mb-2">
+            <label for="studentName" >ชั้น:</label>
+            <select class="form-control" id="classroom" name="classroom" required>
+                <option disabled selected value="">เลือกชั้น..</option>
+                <option>ม.1</option>
+                <option>ม.2</option>
+                <option>ม.3</option>
+                <option>ม.4</option>
+                <option>ม.5</option>
+                <option>ม.6</option>
+                </select>
+
+             </div>
+
+         <div class="col-md-12 mb-2">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </div>
+
     </form>
 
     <div id="tokenDisplay" style="display:none;">
         <h3>LINE Notify Token คือ</h3>
         <p id="token"></p>
     </div>
-
+</div>
+</div>
     <script>
         const noti_ClientId = "Zk4S7t7P8gXQ8vIm2LIAGx"
         const noti_RedirectUrl = ""
@@ -42,11 +61,10 @@
 
             const studentId = document.getElementById('studentId').value;
             const studentName = document.getElementById('studentName').value;
+            const classroom = document.getElementById('classroom').value;
 
-
-
-            if(studentId && studentName) {
-                const redirectUrl = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${noti_ClientId}&redirect_uri=${noti_RedirectUrl}&scope=notify&state=${studentId}_${studentName}`;
+            if(studentId && studentName && classroom) {
+                const redirectUrl = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${noti_ClientId}&redirect_uri=${noti_RedirectUrl}&scope=notify&state=${studentId}_${studentName}_${classroom}`;
                 window.location.href = redirectUrl;
             } else {
                 alert('Please enter both Student ID and Name.');
@@ -73,7 +91,6 @@
             })
             .catch(error => console.error('Error fetching token:', error));
         }
-
     </script>
 
 </body>
